@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rsatest
+  name: rsatest
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsatest
+  revisionHistoryLimit: 10
+  template:
+    metadata:
+      labels:
+        app: rsatest
+    spec:
+      containers:
+      - args:
+        - -f
+        - /dev/null
+        command: ["tail"]
+        image: gcr.io/cloud-builders/gcloud:latest
+        imagePullPolicy: IfNotPresent
+        name: bash
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccount: rsatest
+      serviceAccountName: rsatest
