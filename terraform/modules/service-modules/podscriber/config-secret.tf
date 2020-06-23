@@ -59,6 +59,7 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.podcasts.name
     WORKER_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.excerpts.name
     WORKER_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.transcripts.name
+    WORKER_SECRET_MANAGER_SECRET_NAME  = "podscriber-worker"
   }
 }
 
