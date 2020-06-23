@@ -10,5 +10,6 @@ variable "required_apis" {
     "logging.googleapis.com",
     "redis.googleapis.com",
     "servicenetworking.googleapis.com",
+    "secretmanager.googleapis.com",
   ]
 }

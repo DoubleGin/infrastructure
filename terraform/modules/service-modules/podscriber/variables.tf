@@ -18,6 +18,10 @@ variable "k8s_namespace" {
   type = string
 }
 
+variable "gcp_sa_email" {
+  type = string
+}
+
 variable "network_id" {
   type = string
 }
