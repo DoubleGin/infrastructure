@@ -26,7 +26,7 @@ resource "google_container_cluster" "cluster" {
 
   lifecycle {
     ignore_changes = [
-      "min_master_version"
+      min_master_version
     ]
   }
 }

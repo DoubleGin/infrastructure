@@ -35,12 +35,12 @@ resource "google_sql_database" "database" {
   instance = google_sql_database_instance.instance.name
 }
 
-resource "random_password" "podscriber_web" {
+resource "random_password" "podscriber_web_db_pw" {
   length = 20
 }
 
 resource "google_sql_user" "podscriber_web" {
   name     = "podscriber-web"
   instance = google_sql_database_instance.instance.name
-  password = random_password.podscriber_web.result
+  password = random_password.podscriber_web_db_pw.result
 }
