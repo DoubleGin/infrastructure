@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: podscriber-migrate
+  namespace: podscriber
+spec:
+  template:
+    spec:
+      containers:
+      - name: podscriber-migrate
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "true"
+        envFrom:
+        - configMapRef:
+            name: podscriber-web
+        - secretRef:
+            name: podscriber-web
+        image: us.gcr.io/oddmark-stage/podscriber-web:latest
+        command: ["bash"]
+        args: ["-c", "/web/db_scripts/db_migrate.sh"]
+      restartPolicy: Never
