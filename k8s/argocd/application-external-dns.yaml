@@ -1,0 +1,138 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  generation: 1
+  name: external-dns
+  selfLink: /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/external-dns
+spec:
+  destination:
+    namespace: external-dns
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: k8s/external-dns
+    repoURL: https://github.com/DoubleGin/infrastructure.git
+    targetRevision: HEAD
+  syncPolicy: {}
+status:
+  health:
+    status: Healthy
+  history:
+  - deployedAt: "2020-06-26T05:21:28Z"
+    id: 0
+    revision: 9b4624e7e71810016513b837c2d5e5a3fa3e0393
+    source:
+      path: k8s/external-dns
+      repoURL: https://github.com/DoubleGin/infrastructure.git
+      targetRevision: HEAD
+  observedAt: "2020-06-26T06:13:20Z"
+  operationState:
+    finishedAt: "2020-06-26T05:21:28Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        username: admin
+      sync:
+        revision: 9b4624e7e71810016513b837c2d5e5a3fa3e0393
+        syncStrategy:
+          hook: {}
+    phase: Succeeded
+    startedAt: "2020-06-26T05:21:26Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Namespace
+        message: namespace/external-dns created
+        name: external-dns
+        namespace: external-dns
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/external-dns created
+        name: external-dns
+        namespace: external-dns
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: clusterrole.rbac.authorization.k8s.io/external-dns unchanged
+        name: external-dns
+        namespace: external-dns
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: clusterrolebinding.rbac.authorization.k8s.io/external-dns-viewer
+          unchanged
+        name: external-dns-viewer
+        namespace: external-dns
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/external-dns created
+        name: external-dns
+        namespace: external-dns
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 9b4624e7e71810016513b837c2d5e5a3fa3e0393
+      source:
+        path: k8s/external-dns
+        repoURL: https://github.com/DoubleGin/infrastructure.git
+        targetRevision: HEAD
+  reconciledAt: "2020-06-26T06:13:20Z"
+  resources:
+  - kind: Namespace
+    name: external-dns
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: external-dns
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: external-dns-viewer
+    status: Synced
+    version: v1beta1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: external-dns
+    namespace: external-dns
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: external-dns
+    namespace: external-dns
+    requiresPruning: true
+    status: OutOfSync
+    version: v1
+  sourceType: Directory
+  summary:
+    images:
+    - registry.opensource.zalan.do/teapot/external-dns:latest
+  sync:
+    comparedTo:
+      destination:
+        namespace: external-dns
+        server: https://kubernetes.default.svc
+      source:
+        path: k8s/external-dns
+        repoURL: https://github.com/DoubleGin/infrastructure.git
+        targetRevision: HEAD
+    revision: 878468607b0d9d05e0f0f95a7c44f736ab7d7a8c
+    status: OutOfSync

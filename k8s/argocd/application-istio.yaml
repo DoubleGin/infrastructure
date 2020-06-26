@@ -1,0 +1,954 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  generation: 1
+  name: istio
+  selfLink: /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/istio
+spec:
+  destination:
+    namespace: istio-system
+    server: https://kubernetes.default.svc
+  ignoreDifferences:
+  - group: admissionregistration.k8s.io
+    jsonPointers:
+    - /webhooks/0/clientConfig/caBundle
+    kind: MutatingWebhookConfiguration
+  - group: admissionregistration.k8s.io
+    jsonPointers:
+    - /webhooks/0/clientConfig/caBundle
+    - /webhooks/0/failurePolicy
+    kind: ValidatingWebhookConfiguration
+  project: default
+  source:
+    path: k8s/istio
+    repoURL: https://github.com/DoubleGin/infrastructure.git
+    targetRevision: HEAD
+status:
+  health:
+    status: Healthy
+  history:
+  - deployedAt: "2020-06-26T03:35:57Z"
+    id: 0
+    revision: f591390e811c29adc950ad309d315a9e9fee594b
+    source:
+      path: k8s/istio
+      repoURL: https://github.com/DoubleGin/infrastructure.git
+      targetRevision: HEAD
+  - deployedAt: "2020-06-26T03:38:29Z"
+    id: 1
+    revision: f591390e811c29adc950ad309d315a9e9fee594b
+    source:
+      path: k8s/istio
+      repoURL: https://github.com/DoubleGin/infrastructure.git
+      targetRevision: HEAD
+  observedAt: "2020-06-26T06:14:16Z"
+  operationState:
+    finishedAt: "2020-06-26T03:38:29Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        username: admin
+      sync:
+        revision: f591390e811c29adc950ad309d315a9e9fee594b
+        syncStrategy:
+          hook: {}
+    phase: Succeeded
+    startedAt: "2020-06-26T03:38:16Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Namespace
+        message: namespace/istio-system unchanged
+        name: istio-system
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: policy
+        hookPhase: Running
+        kind: PodDisruptionBudget
+        message: poddisruptionbudget.policy/istiod unchanged
+        name: istiod
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: policy
+        hookPhase: Running
+        kind: PodDisruptionBudget
+        message: poddisruptionbudget.policy/istio-ingressgateway unchanged
+        name: istio-ingressgateway
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/istio unchanged
+        name: istio
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/istio-sidecar-injector unchanged
+        name: istio-sidecar-injector
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/istio-ingressgateway-service-account unchanged
+        name: istio-ingressgateway-service-account
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/istiod-service-account unchanged
+        name: istiod-service-account
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/istio-reader-service-account unchanged
+        name: istio-reader-service-account
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/adapters.config.istio.io
+          unchanged
+        name: adapters.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/attributemanifests.config.istio.io
+          unchanged
+        name: attributemanifests.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/authorizationpolicies.security.istio.io
+          unchanged
+        name: authorizationpolicies.security.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/destinationrules.networking.istio.io
+          unchanged
+        name: destinationrules.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/quotaspecbindings.config.istio.io
+          unchanged
+        name: quotaspecbindings.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/peerauthentications.security.istio.io
+          unchanged
+        name: peerauthentications.security.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/envoyfilters.networking.istio.io
+          unchanged
+        name: envoyfilters.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/gateways.networking.istio.io
+          unchanged
+        name: gateways.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/serviceentries.networking.istio.io
+          unchanged
+        name: serviceentries.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/httpapispecbindings.config.istio.io
+          unchanged
+        name: httpapispecbindings.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/workloadentries.networking.istio.io
+          unchanged
+        name: workloadentries.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/instances.config.istio.io
+          unchanged
+        name: instances.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/requestauthentications.security.istio.io
+          unchanged
+        name: requestauthentications.security.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/handlers.config.istio.io
+          unchanged
+        name: handlers.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/clusterrbacconfigs.rbac.istio.io
+          unchanged
+        name: clusterrbacconfigs.rbac.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/rbacconfigs.rbac.istio.io
+          unchanged
+        name: rbacconfigs.rbac.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/httpapispecs.config.istio.io
+          unchanged
+        name: httpapispecs.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/istiooperators.install.istio.io
+          unchanged
+        name: istiooperators.install.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/serviceroles.rbac.istio.io
+          unchanged
+        name: serviceroles.rbac.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/quotaspecs.config.istio.io
+          unchanged
+        name: quotaspecs.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/sidecars.networking.istio.io
+          unchanged
+        name: sidecars.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/servicerolebindings.rbac.istio.io
+          unchanged
+        name: servicerolebindings.rbac.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/rules.config.istio.io
+          unchanged
+        name: rules.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/templates.config.istio.io
+          unchanged
+        name: templates.config.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/virtualservices.networking.istio.io
+          unchanged
+        name: virtualservices.networking.istio.io
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: clusterrole.rbac.authorization.k8s.io/istiod-istio-system reconciled.
+          clusterrole.rbac.authorization.k8s.io/istiod-istio-system unchanged
+        name: istiod-istio-system
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: clusterrole.rbac.authorization.k8s.io/istio-reader-istio-system reconciled.
+          clusterrole.rbac.authorization.k8s.io/istio-reader-istio-system unchanged
+        name: istio-reader-istio-system
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: clusterrolebinding.rbac.authorization.k8s.io/istiod-pilot-istio-system
+          reconciled. clusterrolebinding.rbac.authorization.k8s.io/istiod-pilot-istio-system
+          unchanged
+        name: istiod-pilot-istio-system
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: clusterrolebinding.rbac.authorization.k8s.io/istio-reader-istio-system
+          reconciled. clusterrolebinding.rbac.authorization.k8s.io/istio-reader-istio-system
+          unchanged
+        name: istio-reader-istio-system
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/istio-ingressgateway-sds reconciled.
+          role.rbac.authorization.k8s.io/istio-ingressgateway-sds unchanged
+        name: istio-ingressgateway-sds
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/istio-ingressgateway-sds reconciled.
+          rolebinding.rbac.authorization.k8s.io/istio-ingressgateway-sds unchanged
+        name: istio-ingressgateway-sds
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/istiod unchanged
+        name: istiod
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/istio-ingressgateway unchanged
+        name: istio-ingressgateway
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/istio-ingressgateway configured
+        name: istio-ingressgateway
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/istiod configured
+        name: istiod
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: autoscaling
+        hookPhase: Running
+        kind: HorizontalPodAutoscaler
+        message: horizontalpodautoscaler.autoscaling/istio-ingressgateway unchanged
+        name: istio-ingressgateway
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v2beta1
+      - group: admissionregistration.k8s.io
+        hookPhase: Running
+        kind: MutatingWebhookConfiguration
+        message: mutatingwebhookconfiguration.admissionregistration.k8s.io/istio-sidecar-injector
+          configured
+        name: istio-sidecar-injector
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: autoscaling
+        hookPhase: Running
+        kind: HorizontalPodAutoscaler
+        message: horizontalpodautoscaler.autoscaling/istiod unchanged
+        name: istiod
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v2beta1
+      - group: admissionregistration.k8s.io
+        hookPhase: Running
+        kind: ValidatingWebhookConfiguration
+        message: validatingwebhookconfiguration.admissionregistration.k8s.io/istiod-istio-system
+          configured
+        name: istiod-istio-system
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/metadata-exchange-1.6 unchanged
+        name: metadata-exchange-1.6
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/metadata-exchange-1.5 unchanged
+        name: metadata-exchange-1.5
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/metadata-exchange-1.4 unchanged
+        name: metadata-exchange-1.4
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: Gateway
+        message: gateway.networking.istio.io/oddmark-gateway unchanged
+        name: oddmark-gateway
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1beta1
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/tcp-stats-filter-1.6 unchanged
+        name: tcp-stats-filter-1.6
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/stats-filter-1.5 unchanged
+        name: stats-filter-1.5
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/tcp-stats-filter-1.5 unchanged
+        name: tcp-stats-filter-1.5
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/tcp-metadata-exchange-1.6 unchanged
+        name: tcp-metadata-exchange-1.6
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/stats-filter-1.6 unchanged
+        name: stats-filter-1.6
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/stats-filter-1.4 unchanged
+        name: stats-filter-1.4
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      - group: networking.istio.io
+        hookPhase: Running
+        kind: EnvoyFilter
+        message: envoyfilter.networking.istio.io/tcp-metadata-exchange-1.5 unchanged
+        name: tcp-metadata-exchange-1.5
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha3
+      revision: f591390e811c29adc950ad309d315a9e9fee594b
+      source:
+        path: k8s/istio
+        repoURL: https://github.com/DoubleGin/infrastructure.git
+        targetRevision: HEAD
+  reconciledAt: "2020-06-26T06:13:20Z"
+  resources:
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: servicerolebindings.rbac.istio.io
+    status: Synced
+    version: v1beta1
+  - kind: ServiceAccount
+    name: istio-ingressgateway-service-account
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: destinationrules.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: instances.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: clusterrbacconfigs.rbac.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: serviceroles.rbac.istio.io
+    status: Synced
+    version: v1beta1
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+    name: istiod
+    namespace: istio-system
+    status: Synced
+    version: v2beta1
+  - kind: ConfigMap
+    name: istio
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: policy
+    kind: PodDisruptionBudget
+    name: istiod
+    namespace: istio-system
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istiod-istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: quotaspecs.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: serviceentries.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: istiooperators.install.istio.io
+    status: Synced
+    version: v1beta1
+  - health:
+      status: Healthy
+    kind: Service
+    name: istio-ingressgateway
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: metadata-exchange-1.4
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: metadata-exchange-1.5
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: networking.istio.io
+    kind: Gateway
+    name: oddmark-gateway
+    namespace: istio-system
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: istiod-pilot-istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: quotaspecbindings.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: gateways.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: adapters.config.istio.io
+    status: Synced
+    version: v1beta1
+  - health:
+      status: Healthy
+    kind: Service
+    name: istiod
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: admissionregistration.k8s.io
+    kind: MutatingWebhookConfiguration
+    name: istio-sidecar-injector
+    status: Synced
+    version: v1beta1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: metadata-exchange-1.6
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: stats-filter-1.6
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: virtualservices.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: templates.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: policy
+    kind: PodDisruptionBudget
+    name: istio-ingressgateway
+    namespace: istio-system
+    status: Synced
+    version: v1beta1
+  - kind: ConfigMap
+    name: istio-sidecar-injector
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: stats-filter-1.4
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: istio-reader-istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: envoyfilters.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: handlers.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+    name: istio-ingressgateway
+    namespace: istio-system
+    status: Synced
+    version: v2beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: istio-reader-istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: rules.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: istio-ingressgateway-sds
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: workloadentries.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: tcp-metadata-exchange-1.5
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: stats-filter-1.5
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    name: istiod-istio-system
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: authorizationpolicies.security.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: requestauthentications.security.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: istio-ingressgateway
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: tcp-stats-filter-1.6
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - kind: ServiceAccount
+    name: istio-reader-service-account
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: httpapispecbindings.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: peerauthentications.security.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: istiod
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - kind: Namespace
+    name: istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: sidecars.networking.istio.io
+    status: Synced
+    version: v1beta1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: tcp-stats-filter-1.5
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: httpapispecs.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: networking.istio.io
+    kind: EnvoyFilter
+    name: tcp-metadata-exchange-1.6
+    namespace: istio-system
+    status: Synced
+    version: v1alpha3
+  - kind: ServiceAccount
+    name: istiod-service-account
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: istio-ingressgateway-sds
+    namespace: istio-system
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: attributemanifests.config.istio.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: rbacconfigs.rbac.istio.io
+    status: Synced
+    version: v1beta1
+  sourceType: Directory
+  summary:
+    images:
+    - docker.io/istio/proxyv2:1.6.3
+    - docker.io/istio/pilot:1.6.3
+  sync:
+    comparedTo:
+      destination:
+        namespace: istio-system
+        server: https://kubernetes.default.svc
+      source:
+        path: k8s/istio
+        repoURL: https://github.com/DoubleGin/infrastructure.git
+        targetRevision: HEAD
+    revision: 878468607b0d9d05e0f0f95a7c44f736ab7d7a8c
+    status: Synced

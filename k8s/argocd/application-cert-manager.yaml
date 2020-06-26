@@ -1,0 +1,317 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  generation: 1
+  name: cert-manager
+  selfLink: /apis/argoproj.io/v1alpha1/namespaces/argocd/applications/cert-manager
+spec:
+  destination:
+    namespace: cert-manager
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: k8s/cert-manager
+    repoURL: https://github.com/DoubleGin/infrastructure.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+status:
+  health:
+    status: Degraded
+  history:
+  - deployedAt: "2020-06-26T04:19:47Z"
+    id: 0
+    revision: bfde82f303de242674bb32e830ee79fc5723be54
+    source:
+      path: k8s/cert-manager
+      repoURL: https://github.com/DoubleGin/infrastructure.git
+      targetRevision: HEAD
+  - deployedAt: "2020-06-26T05:58:54Z"
+    id: 1
+    revision: 9b4624e7e71810016513b837c2d5e5a3fa3e0393
+    source:
+      path: k8s/cert-manager
+      repoURL: https://github.com/DoubleGin/infrastructure.git
+      targetRevision: HEAD
+  observedAt: "2020-06-26T06:13:20Z"
+  operationState:
+    finishedAt: "2020-06-26T05:58:57Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        username: admin
+      sync:
+        resources:
+        - group: cert-manager.io
+          kind: Certificate
+          name: oddmark-cert
+        revision: 9b4624e7e71810016513b837c2d5e5a3fa3e0393
+        syncStrategy:
+          hook: {}
+    phase: Succeeded
+    startedAt: "2020-06-26T05:58:56Z"
+    syncResult:
+      resources:
+      - group: cert-manager.io
+        hookPhase: Running
+        kind: Certificate
+        message: certificate.cert-manager.io/oddmark-cert unchanged
+        name: oddmark-cert
+        namespace: istio-system
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha2
+      revision: 9b4624e7e71810016513b837c2d5e5a3fa3e0393
+      source:
+        path: k8s/cert-manager
+        repoURL: https://github.com/DoubleGin/infrastructure.git
+        targetRevision: HEAD
+  reconciledAt: "2020-06-26T06:13:20Z"
+  resources:
+  - kind: Namespace
+    name: cert-manager
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: cert-manager
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-view
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-controller-clusterissuers
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: cert-manager-webhook:dynamic-serving
+    namespace: cert-manager
+    status: Synced
+    version: v1beta1
+  - group: admissionregistration.k8s.io
+    kind: ValidatingWebhookConfiguration
+    name: cert-manager-webhook
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: certificaterequests.cert-manager.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: clusterissuers.cert-manager.io
+    status: Synced
+    version: v1beta1
+  - kind: ServiceAccount
+    name: cert-manager-cainjector
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-controller-challenges
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-controller-ingress-shim
+    status: Synced
+    version: v1beta1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: cert-manager-webhook
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: cert-manager-webhook
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-controller-certificates
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-controller-issuers
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-controller-clusterissuers
+    status: Synced
+    version: v1beta1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: cert-manager-cainjector
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+    status: Synced
+    version: v1alpha2
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-edit
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-cainjector
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-controller-orders
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-controller-challenges
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-controller-ingress-shim
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: cert-manager:leaderelection
+    namespace: kube-system
+    status: Synced
+    version: v1beta1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: cert-manager
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: issuers.cert-manager.io
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-controller-orders
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-controller-issuers
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: cert-manager-cainjector:leaderelection
+    namespace: kube-system
+    status: Synced
+    version: v1beta1
+  - health:
+      status: Healthy
+    kind: Service
+    name: cert-manager
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cert-manager-cainjector
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: cert-manager-controller-certificates
+    status: Synced
+    version: v1beta1
+  - health:
+      status: Healthy
+    kind: Service
+    name: cert-manager-webhook
+    namespace: cert-manager
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: orders.acme.cert-manager.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: certificates.cert-manager.io
+    status: Synced
+    version: v1beta1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: challenges.acme.cert-manager.io
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: cert-manager:leaderelection
+    namespace: kube-system
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: cert-manager-cainjector:leaderelection
+    namespace: kube-system
+    status: Synced
+    version: v1beta1
+  - group: admissionregistration.k8s.io
+    kind: MutatingWebhookConfiguration
+    name: cert-manager-webhook
+    status: Synced
+    version: v1beta1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: cert-manager-webhook:dynamic-serving
+    namespace: cert-manager
+    status: Synced
+    version: v1beta1
+  - group: cert-manager.io
+    health:
+      message: Waiting for CertificateRequest "oddmark-cert-2703927153" to complete
+      status: Degraded
+    kind: Certificate
+    name: oddmark-cert
+    namespace: istio-system
+    status: Synced
+    version: v1alpha2
+  sourceType: Directory
+  summary:
+    externalURLs:
+    - http://stage.oddmark.app:8089/.well-known/acme-challenge/Jh-rmJ4kNbKJXifNzHdjQpp6Nwu42L5YFW9ZkKIfpfU
+    images:
+    - quay.io/jetstack/cert-manager-webhook:v0.15.1
+    - quay.io/jetstack/cert-manager-cainjector:v0.15.1
+    - quay.io/jetstack/cert-manager-controller:v0.15.1
+    - quay.io/jetstack/cert-manager-acmesolver:v0.15.1
+  sync:
+    comparedTo:
+      destination:
+        namespace: cert-manager
+        server: https://kubernetes.default.svc
+      source:
+        path: k8s/cert-manager
+        repoURL: https://github.com/DoubleGin/infrastructure.git
+        targetRevision: HEAD
+    revision: 878468607b0d9d05e0f0f95a7c44f736ab7d7a8c
+    status: Synced
