@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podscriber-worker
+  namespace: podscriber
+  labels:
+    app: podscriber-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: podscriber-worker
+  template:
+    metadata:
+      labels:
+        app: podscriber-worker
+    spec:
+      serviceAccount: podscriber
+      containers:
+      - name: worker
+        image: us.gcr.io/oddmark-stage/podscriber-worker:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "true"
+        envFrom:
+        - configMapRef:
+            name: podscriber-worker
+        - secretRef:
+            name: podscriber-worker
+        command: ["rq"]
+        args: ["worker", "-c", "settings", "--with-scheduler"]
+        #command: ["tail"]
+        #args: ["-f", "/dev/null"]

@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: podscriber-web
+  #namespace: podscriber
+  namespace: istio-system
+spec:
+  hosts:
+  - stage.oddmark.app
+  gateways:
+  - oddmark-gateway
+  http:
+  - route:
+    - destination:
+        host: podscriber-web.podscriber.svc.cluster.local
+        port:
+          number: 80
