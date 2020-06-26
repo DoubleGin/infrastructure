@@ -2,6 +2,7 @@ apiVersion: cert-manager.io/v1alpha2
 kind: ClusterIssuer
 metadata:
   name: letsencrypt-prod
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   acme:
     # The ACME server URL
