@@ -3,12 +3,6 @@ kind: Namespace
 metadata:
   name: external-dns
 
----
-
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: external-dns
 
 ---
 
