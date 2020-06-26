@@ -8,7 +8,7 @@ metadata:
 spec:
   secretName: oddmark-cert
   issuerRef:
-    name: letsencrypt-stage
+    name: letsencrypt-prod
     kind: ClusterIssuer
   commonName: stage.oddmark.app
   dnsNames:
