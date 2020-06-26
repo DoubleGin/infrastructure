@@ -6,6 +6,7 @@ variable "system_name" {
 variable "required_apis" {
   default = [
     "iam.googleapis.com",
+    "dns.googleapis.com",
     "container.googleapis.com",
     "logging.googleapis.com",
     "redis.googleapis.com",
