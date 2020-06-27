@@ -1,8 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: podscriber-web
-  #namespace: podscriber
+  name: argocd
   namespace: istio-system
 spec:
   hosts:
@@ -11,12 +10,11 @@ spec:
   - oddmark-gateway
   http:
   - match:
-    - uri:
-        prefix: "/admin/"
-    - uri:
-        prefix: "/api/"
+    - uri: 
+        prefix: /argo/
     route:
     - destination:
-        host: podscriber-web.podscriber.svc.cluster.local
+        host: argocd-server.argocd.svc.cluster.local
         port:
           number: 80
+
