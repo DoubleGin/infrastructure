@@ -9,5 +9,4 @@ kubectl apply -n argocd -f install.yaml
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user="$(gcloud config get-value account)"
 
 # apps
-
-kubectl apply -f applications/*.yaml
+find ./applications -name \*.yaml -exec kubectl apply -f {} \;
