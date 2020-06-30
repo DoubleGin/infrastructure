@@ -6,7 +6,7 @@ resource "google_container_node_pool" "preemptible" {
   initial_node_count = 1
 
   autoscaling {
-    min_node_count = 1
+    min_node_count = 2
     max_node_count = 4
   }
 

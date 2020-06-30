@@ -46,3 +46,7 @@ module "registry" {
   environment                   = var.environment
   cluster_service_account_email = module.cluster.service_account_email
 }
+
+module "notifications" {
+  source = "../../modules/platform-modules/stackdriver-notifications"
+}
