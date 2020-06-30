@@ -18,6 +18,18 @@ spec:
       serviceAccount: podscriber
       containers:
       - name: web
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
         image: us.gcr.io/oddmark-stage/podscriber-web:latest
         imagePullPolicy: Always
         ports:
