@@ -4,6 +4,6 @@ module "workload" {
 }
 
 module "external_dns" {
-  source = "../../../modules/service-modules/external-dns"
+  source       = "../../../modules/service-modules/external-dns"
   gcp_sa_email = module.workload.gcp_sa_email
 }
