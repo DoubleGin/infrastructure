@@ -5227,6 +5227,8 @@ metadata:
   name: istiooperators.install.istio.io
   labels:
     release: istio
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   additionalPrinterColumns:
   - JSONPath: .spec.revision
@@ -6713,7 +6715,7 @@ spec:
             config:
               root_id: stackdriver_outbound
               configuration: |
-                {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s"}
+                {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s"}
               vm_config:
                 vm_id: stackdriver_outbound
                 runtime: envoy.wasm.runtime.null
@@ -6738,7 +6740,7 @@ spec:
             config:
               root_id: stackdriver_inbound
               configuration: |
-                {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s"}
+                {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s"}
               vm_config:
                 vm_id: stackdriver_inbound
                 runtime: envoy.wasm.runtime.null
@@ -6763,7 +6765,7 @@ spec:
             config:
               root_id: stackdriver_outbound
               configuration: |
-                {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s", "disable_host_header_fallback": true}
+                {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s", "disable_host_header_fallback": true}
               vm_config:
                 vm_id: stackdriver_outbound
                 runtime: envoy.wasm.runtime.null
@@ -7106,7 +7108,7 @@ spec:
               config:
                 root_id: stackdriver_outbound
                 configuration: |
-                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s"}
+                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s"}
                 vm_config:
                   vm_id: stackdriver_outbound
                   runtime: envoy.wasm.runtime.null
@@ -7134,7 +7136,7 @@ spec:
               config:
                 root_id: stackdriver_inbound
                 configuration: |
-                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s"}
+                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s"}
                 vm_config:
                   vm_id: stackdriver_inbound
                   runtime: envoy.wasm.runtime.null
@@ -7162,7 +7164,7 @@ spec:
               config:
                 root_id: stackdriver_outbound
                 configuration: |
-                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s", "disable_host_header_fallback": true}
+                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s", "disable_host_header_fallback": true}
                 vm_config:
                   vm_id: stackdriver_outbound
                   runtime: envoy.wasm.runtime.null
@@ -7509,7 +7511,7 @@ spec:
               config:
                 root_id: stackdriver_outbound
                 configuration: |
-                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s"}
+                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s"}
                 vm_config:
                   vm_id: stackdriver_outbound
                   runtime: envoy.wasm.runtime.null
@@ -7537,7 +7539,7 @@ spec:
               config:
                 root_id: stackdriver_inbound
                 configuration: |
-                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s"}
+                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s"}
                 vm_config:
                   vm_id: stackdriver_inbound
                   runtime: envoy.wasm.runtime.null
@@ -7565,7 +7567,7 @@ spec:
               config:
                 root_id: stackdriver_outbound
                 configuration: |
-                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": true, "meshEdgesReportingDuration": "600s", "disable_host_header_fallback": true}
+                  {"enable_mesh_edges_reporting": false, "disable_server_access_logging": false, "meshEdgesReportingDuration": "600s", "disable_host_header_fallback": true}
                 vm_config:
                   vm_id: stackdriver_outbound
                   runtime: envoy.wasm.runtime.null
