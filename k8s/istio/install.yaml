@@ -5675,7 +5675,7 @@ data:
 
   mesh: |-
     accessLogEncoding: TEXT
-    accessLogFile: /dev/stdout
+    accessLogFile: ""
     accessLogFormat: ""
     defaultConfig:
       concurrency: 2
