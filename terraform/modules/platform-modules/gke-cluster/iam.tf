@@ -16,3 +16,8 @@ resource "google_project_iam_member" "monitoring_viewer" {
   role   = "roles/monitoring.viewer"
   member = "serviceAccount:${google_service_account.cluster_service_account.email}"
 }
+
+resource "google_project_iam_member" "metadata_writer" {
+  role   = "roles/stackdriver.resourceMetadata.writer"
+  member = "serviceAccount:${google_service_account.cluster_service_account.email}"
+}
