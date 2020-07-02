@@ -8,6 +8,9 @@ resource "google_service_account" "sa" {
 resource "kubernetes_namespace" "namespace" {
   metadata {
     name = var.name
+    labels = {
+      istio-injection = "enabled"
+    }
   }
 }
 
