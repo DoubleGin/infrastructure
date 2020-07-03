@@ -8,8 +8,8 @@ resource "kubernetes_config_map" "podscriber_web" {
     WEB_DB_HOST                     = google_sql_database_instance.instance.ip_address.0.ip_address
     WEB_DB_USER                     = google_sql_user.podscriber_web.name
     WEB_DB_NAME                     = google_sql_database.database.name
-    WEB_REDIS_HOST                  = google_redis_instance.rq.host
-    WEB_REDIS_PORT                  = google_redis_instance.rq.port
+    WEB_REDIS_HOST                  = var.redis_service["host"]
+    WEB_REDIS_PORT                  = var.redis_service["port"]
     WEB_REDIS_DB_ID                 = "0"
     WEB_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.podcasts.name
     WEB_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.excerpts.name
@@ -51,8 +51,8 @@ resource "kubernetes_config_map" "podscriber_worker" {
   }
 
   data = {
-    WORKER_REDIS_HOST                  = google_redis_instance.rq.host
-    WORKER_REDIS_PORT                  = google_redis_instance.rq.port
+    WORKER_REDIS_HOST                  = var.redis_service["host"]
+    WORKER_REDIS_PORT                  = var.redis_service["port"]
     WORKER_REDIS_DB_ID                 = "0"
     WORKER_PODSCRIBER_WEB_HOST         = "podscriber-web.podscriber.svc.cluster.local"
     WORKER_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.podcasts.name

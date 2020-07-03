@@ -11,5 +11,6 @@ module "podscriber" {
   db_instance_tier = var.db_instance_tier
   k8s_namespace    = module.workload.k8s_namespace
   gcp_sa_email     = module.workload.gcp_sa_email
-  network_id       = data.google_compute_network.main.id
+  network_id       = data.terraform_remote_state.platform.outputs.network_id
+  redis_service    = data.terraform_remote_state.platform.outputs.redis_service
 }

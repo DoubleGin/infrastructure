@@ -32,5 +32,3 @@ spec:
             name: podscriber-worker
         command: ["rq"]
         args: ["worker", "-c", "settings", "--with-scheduler"]
-        #command: ["tail"]
-        #args: ["-f", "/dev/null"]
