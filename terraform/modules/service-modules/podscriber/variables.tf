@@ -25,3 +25,7 @@ variable "gcp_sa_email" {
 variable "network_id" {
   type = string
 }
+
+variable "redis_service" {
+  type = map(string)
+}

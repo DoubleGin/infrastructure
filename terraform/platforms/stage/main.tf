@@ -50,3 +50,9 @@ module "registry" {
 module "notifications" {
   source = "../../modules/platform-modules/stackdriver-notifications"
 }
+
+module "redis" {
+  source     = "../../modules/platform-modules/redis"
+  location   = var.location
+  network_id = module.vpc.network["network"].id
+}
