@@ -17,3 +17,7 @@ variable "k8s_namespace" {
 variable "redis_service" {
   type = map(string)
 }
+
+variable "podcast_media_gcs_bucket" {
+  type = string
+}
