@@ -14,7 +14,6 @@ resource "kubernetes_config_map" "podscriber_web" {
     WEB_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["podcasts"].name
     WEB_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["excerpts"].name
     WEB_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.buckets["transcripts"].name
-    WEB_PODCAST_MEDIA_S3_BUCKET     = aws_s3_bucket.podcasts.bucket
     WEB_EXCERPT_MEDIA_S3_BUCKET     = aws_s3_bucket.excerpts.bucket
     WEB_TRANSCRIPT_MEDIA_S3_BUCKET  = aws_s3_bucket.transcripts.bucket
     WEB_AWS_S3_BUCKET_REGION        = "us-west-2"
@@ -58,7 +57,6 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["podcasts"].name
     WORKER_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["excerpts"].name
     WORKER_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.buckets["transcripts"].name
-    WORKER_PODCAST_MEDIA_S3_BUCKET     = aws_s3_bucket.podcasts.bucket
     WORKER_EXCERPT_MEDIA_S3_BUCKET     = aws_s3_bucket.excerpts.bucket
     WORKER_TRANSCRIPT_MEDIA_S3_BUCKET  = aws_s3_bucket.transcripts.bucket
     WORKER_AWS_S3_ENDPOINT_URL         = ""
