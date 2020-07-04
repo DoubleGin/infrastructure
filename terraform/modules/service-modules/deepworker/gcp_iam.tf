@@ -1,6 +1,12 @@
-# full access to storage and deepspeech transcript buckets
+# full access to deepspeech buckets
 resource "google_storage_bucket_iam_member" "deepspeech_transcripts" {
   bucket = google_storage_bucket.deepspeech_transcripts.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${var.gcp_sa_email}"
+}
+
+resource "google_storage_bucket_iam_member" "deepspeech_models" {
+  bucket = google_storage_bucket.deepspeech_models.name
   role   = "roles/storage.objectAdmin"
   member = "serviceAccount:${var.gcp_sa_email}"
 }
