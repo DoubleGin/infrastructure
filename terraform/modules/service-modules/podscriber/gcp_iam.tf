@@ -12,6 +12,26 @@ resource "google_storage_bucket_iam_member" "static_asset_reader" {
   member = "serviceAccount:${var.gcp_sa_email}"
 }
 
+# grant full access to our own GCS buckets
+
+resource "google_storage_bucket_iam_member" "transcripts_full" {
+  bucket = google_storage_bucket.transcripts.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${var.gcp_sa_email}"
+}
+
+resource "google_storage_bucket_iam_member" "podcasts_full" {
+  bucket = google_storage_bucket.podcasts.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${var.gcp_sa_email}"
+}
+
+resource "google_storage_bucket_iam_member" "excerpts_full" {
+  bucket = google_storage_bucket.excerpts.name
+  role   = "roles/storage.objectAdmin"
+  member = "serviceAccount:${var.gcp_sa_email}"
+}
+
 # grant access to fetch secrets from secret manager
 resource "google_project_iam_custom_role" "secret_reader" {
   role_id     = "secretReader"
