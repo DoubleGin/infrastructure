@@ -15,8 +15,8 @@ resource "google_storage_bucket_iam_member" "buckets_legacy_reader" {
 
 # grant access to fetch secrets from secret manager
 resource "google_project_iam_custom_role" "secret_reader" {
-  role_id     = "secretReader"
-  title       = "secretReader"
+  role_id     = "podscriberSecretReader"
+  title       = "podscriberSecretReader"
   permissions = ["secretmanager.versions.access"]
 }
 
@@ -30,8 +30,8 @@ resource "google_secret_manager_secret_iam_member" "secret_reader" {
 
 # grant access to sign blobs (used for creating GCS signed URLs)
 resource "google_project_iam_custom_role" "blob_signer" {
-  role_id     = "blobSigner"
-  title       = "blobSigner"
+  role_id     = "podscriberBlobSigner"
+  title       = "podscriberBlobSigner"
   permissions = ["iam.serviceAccounts.signBlob"]
 }
 
