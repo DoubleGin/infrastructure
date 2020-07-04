@@ -1,35 +1,17 @@
-# grant access to read static assets bucket
-resource "google_project_iam_custom_role" "static_asset_reader" {
-  role_id     = "staticAssetReader"
-  title       = "staticAssetReader"
-  permissions = ["storage.objects.get"]
-}
-
-
-resource "google_storage_bucket_iam_member" "static_asset_reader" {
-  bucket = google_storage_bucket.static.name
-  role   = google_project_iam_custom_role.static_asset_reader.id
-  member = "serviceAccount:${var.gcp_sa_email}"
-}
-
 # grant full access to our own GCS buckets
 
-resource "google_storage_bucket_iam_member" "transcripts_full" {
-  bucket = google_storage_bucket.transcripts.name
-  role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${var.gcp_sa_email}"
+resource "google_storage_bucket_iam_member" "buckets_object_admin" {
+  for_each = toset(var.bucket_names)
+  bucket   = google_storage_bucket.buckets[each.value].name
+  role     = "roles/storage.objectAdmin"
+  member   = "serviceAccount:${var.gcp_sa_email}"
 }
 
-resource "google_storage_bucket_iam_member" "podcasts_full" {
-  bucket = google_storage_bucket.podcasts.name
-  role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${var.gcp_sa_email}"
-}
-
-resource "google_storage_bucket_iam_member" "excerpts_full" {
-  bucket = google_storage_bucket.excerpts.name
-  role   = "roles/storage.objectAdmin"
-  member = "serviceAccount:${var.gcp_sa_email}"
+resource "google_storage_bucket_iam_member" "buckets_legacy_reader" {
+  for_each = toset(var.bucket_names)
+  bucket   = google_storage_bucket.buckets[each.value].name
+  role     = "roles/storage.legacyBucketReader"
+  member   = "serviceAccount:${var.gcp_sa_email}"
 }
 
 # grant access to fetch secrets from secret manager

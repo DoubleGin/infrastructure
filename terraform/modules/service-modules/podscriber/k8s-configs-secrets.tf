@@ -11,9 +11,9 @@ resource "kubernetes_config_map" "podscriber_web" {
     WEB_REDIS_HOST                  = var.redis_service["host"]
     WEB_REDIS_PORT                  = var.redis_service["port"]
     WEB_REDIS_DB_ID                 = "0"
-    WEB_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.podcasts.name
-    WEB_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.excerpts.name
-    WEB_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.transcripts.name
+    WEB_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["podcasts"].name
+    WEB_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["excerpts"].name
+    WEB_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.buckets["transcripts"].name
     WEB_PODCAST_MEDIA_S3_BUCKET     = aws_s3_bucket.podcasts.bucket
     WEB_EXCERPT_MEDIA_S3_BUCKET     = aws_s3_bucket.excerpts.bucket
     WEB_TRANSCRIPT_MEDIA_S3_BUCKET  = aws_s3_bucket.transcripts.bucket
@@ -55,9 +55,9 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_REDIS_PORT                  = var.redis_service["port"]
     WORKER_REDIS_DB_ID                 = "0"
     WORKER_PODSCRIBER_WEB_HOST         = "podscriber-web.podscriber.svc.cluster.local"
-    WORKER_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.podcasts.name
-    WORKER_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.excerpts.name
-    WORKER_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.transcripts.name
+    WORKER_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["podcasts"].name
+    WORKER_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["excerpts"].name
+    WORKER_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.buckets["transcripts"].name
     WORKER_PODCAST_MEDIA_S3_BUCKET     = aws_s3_bucket.podcasts.bucket
     WORKER_EXCERPT_MEDIA_S3_BUCKET     = aws_s3_bucket.excerpts.bucket
     WORKER_TRANSCRIPT_MEDIA_S3_BUCKET  = aws_s3_bucket.transcripts.bucket

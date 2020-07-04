@@ -26,6 +26,10 @@ variable "network_id" {
   type = string
 }
 
+variable "bucket_names" {
+  type = list(string)
+}
+
 variable "redis_service" {
   type = map(string)
 }
