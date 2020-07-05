@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deepworker
+  namespace: deepworker
+  labels:
+    app: deepworker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deepworker
+  template:
+    metadata:
+      labels:
+        app: deepworker
+    spec:
+      serviceAccount: deepworker
+      containers:
+      - name: worker
+        image: us.gcr.io/oddmark-stage/podscriber-worker:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PYTHONUNBUFFERED
+          value: "true"
+        envFrom:
+        - configMapRef:
+            name: deepworker
+        - secretRef:
+            name: deepworker
+            #TODO: remove this
+            optional: true
+        command: ["rq"]
+        # deepspeech is the queue name
+        args: ["worker", "-c", "settings", "deepspeech"]

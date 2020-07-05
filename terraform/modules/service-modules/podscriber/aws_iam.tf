@@ -16,8 +16,6 @@ data "aws_iam_policy_document" "podscriber" {
     ]
 
     resources = [
-      "arn:aws:s3:::${aws_s3_bucket.podcasts.bucket}",
-      "arn:aws:s3:::${aws_s3_bucket.podcasts.bucket}/*",
       "arn:aws:s3:::${aws_s3_bucket.excerpts.bucket}",
       "arn:aws:s3:::${aws_s3_bucket.excerpts.bucket}/*",
       "arn:aws:s3:::${aws_s3_bucket.transcripts.bucket}",
