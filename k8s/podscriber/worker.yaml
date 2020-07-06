@@ -18,6 +18,13 @@ spec:
       serviceAccount: podscriber
       containers:
       - name: worker
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
         image: us.gcr.io/oddmark-stage/podscriber-worker:latest
         imagePullPolicy: Always
         ports:
