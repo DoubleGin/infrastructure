@@ -29,7 +29,8 @@ data "google_secret_manager_secret_version" "secrets" {
 
 resource "google_secret_manager_secret_iam_member" "secret_reader" {
   for_each  = toset(var.secret_names)
-  secret_id = data.google_secret_manager_secret_version.secrets[each.value].name
+  # because we can only lookup secrets by version rn, there is no data resource for unversioned secrets
+  secret_id = split("/versions/", data.google_secret_manager_secret_version.secrets[each.value].name)[0]
   role      = google_project_iam_custom_role.secret_reader.id
   member    = "serviceAccount:${var.gcp_sa_email}"
 }
