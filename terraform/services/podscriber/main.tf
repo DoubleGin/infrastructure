@@ -14,4 +14,5 @@ module "podscriber" {
   network_id       = data.terraform_remote_state.platform.outputs.network_id
   redis_service    = data.terraform_remote_state.platform.outputs.redis_service
   bucket_names     = var.bucket_names
+  secret_names     = var.secret_names
 }

@@ -22,6 +22,8 @@ resource "kubernetes_config_map" "podscriber_web" {
     WEB_DEBUG               = "false"
     WEB_LOG_LEVEL           = "INFO"
     WEB_DJANGO_LOG_LEVEL    = "INFO"
+    # settings module will fetch credentials from comma separated list of secret mgr secrets here
+    WEB_SECRET_MANAGER_SECRET_NAMES = "meili-master-key"
   }
 }
 
@@ -61,8 +63,8 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_TRANSCRIPT_MEDIA_S3_BUCKET  = aws_s3_bucket.transcripts.bucket
     WORKER_AWS_S3_ENDPOINT_URL         = ""
     WORKER_AWS_S3_BUCKET_REGION        = "us-west-2"
-    # settings module will fetch credentials blob from this google secret manager secret at startup
-    WORKER_SECRET_MANAGER_SECRET_NAME = "podscriber-worker"
+    # settings module will fetch credentials from comma separated list of secret mgr secrets here
+    WORKER_SECRET_MANAGER_SECRET_NAMES = "podscriber-worker"
   }
 }
 
