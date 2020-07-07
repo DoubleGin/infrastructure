@@ -1,3 +1,5 @@
+data "google_project" "project" {}
+
 # grant full access to our own GCS buckets
 resource "google_storage_bucket_iam_member" "buckets_object_admin" {
   for_each = toset(var.bucket_names)
@@ -20,10 +22,14 @@ resource "google_project_iam_custom_role" "secret_reader" {
   permissions = ["secretmanager.versions.access"]
 }
 
+data "google_secret_manager_secret_version" "secrets" {
+  for_each = toset(var.secret_names)
+  secret   = each.value
+}
+
 resource "google_secret_manager_secret_iam_member" "secret_reader" {
-  #TODO: look this id up with a data resource whenever they add one
-  # https://www.terraform.io/docs/providers/google/d/datasource_google_secret_manager_secret_version.html
-  secret_id = "projects/oddmark-stage/secrets/podscriber-worker"
+  for_each  = toset(var.secret_names)
+  secret_id = data.google_secret_manager_secret_version.secrets[each.value].name
   role      = google_project_iam_custom_role.secret_reader.id
   member    = "serviceAccount:${var.gcp_sa_email}"
 }

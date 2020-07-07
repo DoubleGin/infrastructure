@@ -17,3 +17,10 @@ variable "bucket_names" {
     "excerpts",
   ]
 }
+
+variable "secret_names" {
+  default = [
+    "podscriber-worker",
+    "meili-master-key"
+  ]
+}

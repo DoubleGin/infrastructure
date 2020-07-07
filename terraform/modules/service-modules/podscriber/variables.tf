@@ -27,7 +27,13 @@ variable "network_id" {
 }
 
 variable "bucket_names" {
-  type = list(string)
+  description = "list of gcs buckets to create and grant podscriber service account full access to"
+  type        = list(string)
+}
+
+variable "secret_names" {
+  description = "list of google secret manager secrets to grant podscriber service account read access to"
+  type        = list(string)
 }
 
 variable "redis_service" {
