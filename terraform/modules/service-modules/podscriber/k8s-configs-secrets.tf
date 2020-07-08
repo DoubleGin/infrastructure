@@ -64,7 +64,7 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_AWS_S3_ENDPOINT_URL         = ""
     WORKER_AWS_S3_BUCKET_REGION        = "us-west-2"
     # settings module will fetch credentials from comma separated list of secret mgr secrets here
-    WORKER_SECRET_MANAGER_SECRET_NAMES = "podscriber-worker"
+    WORKER_SECRET_MANAGER_SECRET_NAMES = "podscriber-worker,meili-master-key"
   }
 }
 
