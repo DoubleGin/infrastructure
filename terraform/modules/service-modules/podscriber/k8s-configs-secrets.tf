@@ -31,6 +31,10 @@ resource "random_password" "django_secret_key" {
   length = 20
 }
 
+data "google_secret_manager_secret_version" "appoptics_svc_key" {
+  secret = "appoptics-service-key-podscriber-web"
+}
+
 resource "kubernetes_secret" "podscriber_web" {
   metadata {
     name      = "podscriber-web"
@@ -42,6 +46,7 @@ resource "kubernetes_secret" "podscriber_web" {
     WEB_SECRET_KEY               = random_password.django_secret_key.result
     WEB_AWS_S3_ACCESS_KEY_ID     = aws_iam_access_key.podscriber.id
     WEB_AWS_S3_SECRET_ACCESS_KEY = aws_iam_access_key.podscriber.secret
+    APPOPTICS_SERVICE_KEY        = data.google_secret_manager_secret_version.appoptics_svc_key.secret_data
   }
 }
 
