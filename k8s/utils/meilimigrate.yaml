@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: podscriber-migrate
+  name: meili-migrate
   namespace: podscriber
 spec:
   template:
@@ -11,16 +11,17 @@ spec:
     spec:
       serviceAccount: podscriber
       containers:
-      - name: podscriber-migrate
+      - name: meili-migrate
         env:
         - name: PYTHONUNBUFFERED
           value: "true"
         envFrom:
         - configMapRef:
-            name: podscriber-web
+            name: podscriber-worker
         - secretRef:
-            name: podscriber-web
-        image: us.gcr.io/oddmark-stage/podscriber-web:latest
-        command: ["bash"]
-        args: ["-c", "/web/db_scripts/db_migrate.sh"]
+            name: podscriber-worker
+        image: us.gcr.io/oddmark-stage/podscriber-worker:latest
+        command: ["python"]
+        args: ["-c", "from common.search import initialize_meilisearch; initialize_meilisearch()"]
+        workingDir: /worker
       restartPolicy: Never

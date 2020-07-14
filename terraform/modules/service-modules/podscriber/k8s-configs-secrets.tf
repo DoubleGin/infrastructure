@@ -11,6 +11,8 @@ resource "kubernetes_config_map" "podscriber_web" {
     WEB_REDIS_HOST                  = var.redis_service["host"]
     WEB_REDIS_PORT                  = var.redis_service["port"]
     WEB_REDIS_DB_ID                 = "0"
+    WEB_MEILI_HOST                  = "meilisearch.meilisearch.svc.cluster.local"
+    WEB_MEILI_PORT                  = 7700
     WEB_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["podcasts"].name
     WEB_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["excerpts"].name
     WEB_TRANSCRIPT_MEDIA_GCS_BUCKET = google_storage_bucket.buckets["transcripts"].name
@@ -60,6 +62,8 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_REDIS_HOST                  = var.redis_service["host"]
     WORKER_REDIS_PORT                  = var.redis_service["port"]
     WORKER_REDIS_DB_ID                 = "0"
+    WORKER_MEILI_HOST                  = "meilisearch.meilisearch.svc.cluster.local"
+    WORKER_MEILI_PORT                  = 7700
     WORKER_PODSCRIBER_WEB_HOST         = "podscriber-web.podscriber.svc.cluster.local"
     WORKER_PODCAST_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["podcasts"].name
     WORKER_EXCERPT_MEDIA_GCS_BUCKET    = google_storage_bucket.buckets["excerpts"].name
