@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: meilisearch
+  namespace: argocd
+spec:
+  destination:
+    namespace: meilisearch
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: k8s/meilisearch
+    repoURL: https://github.com/DoubleGin/infrastructure.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
