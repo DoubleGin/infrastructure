@@ -18,7 +18,7 @@ resource "google_container_cluster" "cluster" {
     services_secondary_range_name = var.services_ip_range_name
   }
 
-  min_master_version = "1.16.9-gke.6"
+  min_master_version = var.k8s_version
 
   workload_identity_config {
     identity_namespace = "${data.google_project.project.project_id}.svc.id.goog"
