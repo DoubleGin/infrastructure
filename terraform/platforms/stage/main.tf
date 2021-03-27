@@ -34,6 +34,7 @@ module "cluster" {
   environment            = var.environment
   location               = var.location
   region                 = var.region
+  k8s_version            = var.k8s_version
   network_name           = module.vpc.network["network"].name
   subnet_name            = "main"
   pod_ip_range_name      = "pods"

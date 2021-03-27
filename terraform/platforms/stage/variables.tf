@@ -14,3 +14,7 @@ variable "location" {
 variable "region" {
   default = "us-central1"
 }
+
+variable "k8s_version" {
+  default = "1.17.17-gke.1101"
+}
