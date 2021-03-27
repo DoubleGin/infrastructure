@@ -3,6 +3,13 @@ kind: Namespace
 metadata:
   name: external-dns
 
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argocd-server
+  namespace: argocd
 
 ---
 
