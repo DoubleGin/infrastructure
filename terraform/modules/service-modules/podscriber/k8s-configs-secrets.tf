@@ -37,6 +37,16 @@ data "google_secret_manager_secret_version" "appoptics_svc_key" {
   secret = "appoptics-service-key-podscriber-web"
 }
 
+# redis secret is generated randomly by the redis helm chart, here we just read
+# it out and cc it over to the podscriber namespace
+
+data "kubernetes_secret" "redis" {
+  metadata {
+    name = "redis"
+    namespace = "redis"
+  }
+}
+
 resource "kubernetes_secret" "podscriber_web" {
   metadata {
     name      = "podscriber-web"
@@ -72,7 +82,7 @@ resource "kubernetes_config_map" "podscriber_worker" {
     WORKER_TRANSCRIPT_MEDIA_S3_BUCKET  = aws_s3_bucket.transcripts.bucket
     WORKER_AWS_S3_ENDPOINT_URL         = ""
     WORKER_AWS_S3_BUCKET_REGION        = "us-west-2"
-    # settings module will fetch credentials from comma separated list of secret mgr secrets here
+    # django settings module will fetch credentials from comma separated list of secret mgr secrets here
     WORKER_SECRET_MANAGER_SECRET_NAMES = "podscriber-worker,meili-master-key"
   }
 }
@@ -84,6 +94,7 @@ resource "kubernetes_secret" "podscriber_worker" {
   }
 
   data = {
+    WORKER_REDIS_PASS               = data.kubernetes_secret.redis.data["redis-password"]
     WORKER_AWS_S3_ACCESS_KEY_ID     = aws_iam_access_key.podscriber.id
     WORKER_AWS_S3_SECRET_ACCESS_KEY = aws_iam_access_key.podscriber.secret
   }

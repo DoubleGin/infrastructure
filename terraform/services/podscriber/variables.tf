@@ -24,3 +24,11 @@ variable "secret_names" {
     "meili-master-key"
   ]
 }
+
+variable "redis_service" {
+  # defaulted via the redis helm chart
+  default = {
+    "host": "redis-master.redis.svc.cluster.local",
+    "port": "6379"
+  }
+}
